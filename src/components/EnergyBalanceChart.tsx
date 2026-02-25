@@ -19,18 +19,19 @@ const trackOptions: ApexOptions = {
       dataLabels: { show: false },
     },
   },
-  fill: {     opacity: 0.5,
-   },
+  fill: {
+    opacity: 0,
+  },
   stroke: { lineCap: 'butt' },
 };
 
-const primarySeries = [76];
+const primarySeries = [100];
 const primaryOptions: ApexOptions = {
   chart: { type: 'radialBar', sparkline: { enabled: true } },
   plotOptions: {
     radialBar: {
       startAngle: 270,
-      endAngle: 390,
+      endAngle: 360,
       hollow: { size: '68%' },
       track: { background: 'transparent' },
       dataLabels: {
@@ -61,15 +62,17 @@ const primaryOptions: ApexOptions = {
   labels: [''],
 };
 
-const secondarySeries = [76];
+const secondarySeries = [100];
 const secondaryOptions: ApexOptions = {
   chart: { type: 'radialBar', sparkline: { enabled: true } },
   plotOptions: {
     radialBar: {
       startAngle: -0,
-      endAngle: 120,
+      endAngle: 90,
       hollow: { size: '68%' },
-      track: { background: 'transparent' },
+      track: {
+        strokeWidth: '90%', // ← border sits away from inner content
+      },
       dataLabels: {
         show: false,
       },
@@ -90,6 +93,24 @@ const secondaryOptions: ApexOptions = {
   stroke: { lineCap: 'butt' },
 };
 
+// Single white track: same structure as primary, -170 to 170, hollow 90%
+const whiteTrackSeries = [100];
+const whiteTrackOptions: ApexOptions = {
+  chart: { type: 'radialBar', sparkline: { enabled: true } },
+  plotOptions: {
+    radialBar: {
+      startAngle: -160,
+      endAngle: 160,
+      hollow: { size: '90%' },
+      track: { background: 'transparent' },
+      dataLabels: { show: false },
+    },
+  },
+  fill: { colors: ['#ffffff'] },
+  stroke: { lineCap: 'butt' },
+  labels: [''],
+};
+
 export function EnergyBalanceChart() {
   return (
     <Card sx={{ height: '100%', borderRadius: 2 }}>
@@ -103,6 +124,14 @@ export function EnergyBalanceChart() {
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: -2 }}>
           <Box sx={{ width: '100%', maxWidth: 200, position: 'relative', mb: 2.5 }}>
             <ReactApexChart options={trackOptions} series={trackSeries} type="radialBar" height={200} />
+            <Box sx={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
+              <ReactApexChart
+                options={whiteTrackOptions}
+                series={whiteTrackSeries}
+                type="radialBar"
+                height={200}
+              />
+            </Box>
             <Box sx={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
               <ReactApexChart options={primaryOptions} series={primarySeries} type="radialBar" height={200} />
             </Box>
