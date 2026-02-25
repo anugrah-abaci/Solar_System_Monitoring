@@ -12,11 +12,11 @@ import type { ApexOptions } from 'apexcharts';
 const series = [
   {
     name: 'Battery Charge',
-    data: [0.08, 0.09, 0.10, 0.21, 0.26, 0.38, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35, 0.35],
+    data: [0.08, 0.09, 0.10, 0.21, 0.26, 0.38, 0.35, 0.35, null, null, null, null, null],
   },
   {
     name: 'Charge',
-    data: [0.14, 0.35, 0.55, 0.8, 1.05, 1.10, 1.15, 1.20, 1.20, 1.20, 1.20, 1.20, 1.20],
+    data: [0.14, 0.35, 0.55, 0.8, 1.05, 1.10, 1.15, 1.15, null, null, null, null, null],
   },
 ];
 
